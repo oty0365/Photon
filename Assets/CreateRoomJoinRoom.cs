@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -8,8 +9,11 @@ using UnityEngine.UIElements;
 
 public class CreateRoomJoinRoom : MonoBehaviourPunCallbacks
 {
+    public TMP_InputField name;
     public TMP_InputField create;
     public TMP_InputField join;
+    
+    
 
     public void CreateRoom()
     {
@@ -24,5 +28,13 @@ public class CreateRoomJoinRoom : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("Game");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            DataPrefs.playername = name.text;
+        }
     }
 }
